@@ -48,7 +48,7 @@ const Main = () => {
                             (
                                 // First Field
                                 <div className="input-field col s6">
-                                <input placeholder="Placeholder" name="first" type="text"
+                                <input placeholder="First Number" name="first" type="text"
                                             className="validate" value={first} onChange={e => onChange(e)} />
                                     <label className="active" htmlFor="first">Enter any number</label>
                                 <button className="waves-effect waves-light btn" onClick={onClick}>Submit</button>
@@ -57,7 +57,7 @@ const Main = () => {
                             (
                                 // Second Field
                                 <div className="input-field col s6">
-                                    <input placeholder="Placeholder" name="second" type="text" maxLength={first.length}
+                                    <input placeholder="Second Number" name="second" type="text" maxLength={first.length}
                                             className="validate" value={second} onChange={e => onChange(e)} />
                                     <label className="active" htmlFor="second">Now enter the same number in reverse</label>
                                     <h5>Result: {second.length !== first.length ? ('?') : (result)}</h5>
