@@ -25,11 +25,11 @@ const InitialScreen = () => {
         else{
             setData({...data,
                 result: 'Incorrect, try again'})
-        }
+        } // eslint-disable-next-line
     }, [firstNo, result, secondNo]);
 
     // Hook to toggle between forms
-    const [form, toggleForm] = useState('initial');
+    const [firstForm, toggleFirstForm] = useState(true);
 
     // OnChange Function
     const onChange = (e) => {
@@ -38,41 +38,35 @@ const InitialScreen = () => {
 
     // onClick Function
     const onClick = () => {
-      toggleForm('second');
+        toggleFirstForm(!firstForm);
     };
+
 
     return (
         <div className="row">
-            <form className="col s12">
-                <div className="row">
-                    <div className="input-field col s6">
-                        {form === 'initial' ?
+                        {firstForm ?
                             (
-                                <div><input placeholder="Placeholder" name="firstNo" type="text"
+                                // First Field
+                                <div className="input-field col s6">
+                                <input placeholder="Placeholder" name="firstNo" type="text"
                                             className="validate" value={firstNo} onChange={e => onChange(e)} />
-                            <label htmlFor="first_name">Enter any Number</label></div>
+                                    <label className="active" htmlFor="firstNo">Enter any number</label>
+                                <a href="!#" className="waves-effect waves-light btn" onClick={onClick}>Submit</a>
+                                </div>
                             ) :
                             (
-                                <div><input placeholder="Placeholder" name="secondNo" type="text"
+                                // Second Field
+                                <div className="input-field col s6">
+                                    <input placeholder="Placeholder" name="secondNo" type="text" maxLength={firstNo.length}
                                             className="validate" value={secondNo} onChange={e => onChange(e)} />
-                                <label htmlFor="first_name">Now enter the same number in reverse</label></div>
+                                    <label className="active" htmlFor="secondNo">Now enter the same number in reverse</label>
+                                    <h5>Result: {secondNo.length !== firstNo.length ? ('?') : (result)}</h5>
+                                    <a href="!#" className="waves-effect waves-light btn" onClick={onClick}>Go Back</a>
+                                </div>
                             )
                         }
-                            </div>
-                            <div className="input-field col s6">
-                                {form === 'initial' ?
-                                    (
-                                        <a className="waves-effect waves-light btn" onClick={onClick}>Submit</a>
-                                    ) :
-                                    (
-                                        <h5>{secondNo === '' ? ('?') : (result)}</h5>
-                                    )
-                                }
-                    </div>
                 </div>
-            </form>
-        </div>
-     )
+    )
 };
 
 export default InitialScreen
