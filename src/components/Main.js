@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-const InitialScreen = () => {
+const Main = () => {
 
     // Initial State
     const [data, setData] = useState({
@@ -51,7 +51,7 @@ const InitialScreen = () => {
                                 <input placeholder="Placeholder" name="firstNo" type="text"
                                             className="validate" value={firstNo} onChange={e => onChange(e)} />
                                     <label className="active" htmlFor="firstNo">Enter any number</label>
-                                <a href="!#" className="waves-effect waves-light btn" onClick={onClick}>Submit</a>
+                                <button className="waves-effect waves-light btn" onClick={onClick}>Submit</button>
                                 </div>
                             ) :
                             (
@@ -61,7 +61,7 @@ const InitialScreen = () => {
                                             className="validate" value={secondNo} onChange={e => onChange(e)} />
                                     <label className="active" htmlFor="secondNo">Now enter the same number in reverse</label>
                                     <h5>Result: {secondNo.length !== firstNo.length ? ('?') : (result)}</h5>
-                                    <a href="!#" className="waves-effect waves-light btn" onClick={onClick}>Go Back</a>
+                                    <button className="waves-effect waves-light btn" onClick={onClick}>Go Back</button>
                                 </div>
                             )
                         }
@@ -69,4 +69,4 @@ const InitialScreen = () => {
     )
 };
 
-export default InitialScreen
+export default Main
