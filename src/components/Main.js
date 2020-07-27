@@ -4,20 +4,20 @@ const Main = () => {
 
     // Initial State
     const [data, setData] = useState({
-        firstNo: '',
-        secondNo: '',
+        first: '',
+        second: '',
         result: '?'
     });
 
     // Destructuring
-    const { firstNo, secondNo, result } = data;
+    const { first, second, result } = data;
 
     // UseEffect Hook
     useEffect(() => {
-        if(secondNo.length === firstNo.length){
+        if(second.length === first.length){
             // Converted to array, reversed and joined back to string
-            const reversed = secondNo.split('').reverse().join('');
-            if(reversed === firstNo) {
+            const reversed = second.split('').reverse().join('');
+            if(reversed === first) {
                 setData({...data,
                     result: 'Correct!'});
             }
@@ -26,10 +26,10 @@ const Main = () => {
             setData({...data,
                 result: 'Incorrect, try again'})
         } // eslint-disable-next-line
-    }, [firstNo, result, secondNo]);
+    }, [first, result, second]);
 
-    // Hook to toggle between forms
-    const [firstForm, toggleFirstForm] = useState(true);
+    // Hook to toggle between fields
+    const [field, toggleField] = useState(true);
 
     // OnChange Function
     const onChange = (e) => {
@@ -38,29 +38,29 @@ const Main = () => {
 
     // onClick Function
     const onClick = () => {
-        toggleFirstForm(!firstForm);
+        toggleField(!field);
     };
 
 
     return (
         <div className="row">
-                        {firstForm ?
+                        {field ?
                             (
                                 // First Field
                                 <div className="input-field col s6">
-                                <input placeholder="Placeholder" name="firstNo" type="text"
-                                            className="validate" value={firstNo} onChange={e => onChange(e)} />
-                                    <label className="active" htmlFor="firstNo">Enter any number</label>
+                                <input placeholder="Placeholder" name="first" type="text"
+                                            className="validate" value={first} onChange={e => onChange(e)} />
+                                    <label className="active" htmlFor="first">Enter any number</label>
                                 <button className="waves-effect waves-light btn" onClick={onClick}>Submit</button>
                                 </div>
                             ) :
                             (
                                 // Second Field
                                 <div className="input-field col s6">
-                                    <input placeholder="Placeholder" name="secondNo" type="text" maxLength={firstNo.length}
-                                            className="validate" value={secondNo} onChange={e => onChange(e)} />
-                                    <label className="active" htmlFor="secondNo">Now enter the same number in reverse</label>
-                                    <h5>Result: {secondNo.length !== firstNo.length ? ('?') : (result)}</h5>
+                                    <input placeholder="Placeholder" name="second" type="text" maxLength={first.length}
+                                            className="validate" value={second} onChange={e => onChange(e)} />
+                                    <label className="active" htmlFor="second">Now enter the same number in reverse</label>
+                                    <h5>Result: {second.length !== first.length ? ('?') : (result)}</h5>
                                     <button className="waves-effect waves-light btn" onClick={onClick}>Go Back</button>
                                 </div>
                             )
