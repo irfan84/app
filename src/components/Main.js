@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import M from 'materialize-css/dist/js/materialize.min';
 
 const Main = () => {
 
@@ -38,6 +39,9 @@ const Main = () => {
 
     // onClick Function
     const onClick = () => {
+        if(first === ''){
+            return M.toast({html: 'Please enter first number', classes: 'rounded'});
+        }
         toggleField(!field);
     };
 
@@ -47,7 +51,7 @@ const Main = () => {
                         {field ?
                             (
                                 // First Field
-                                <div className="input-field col s6">
+                                <div className="input-field col s12">
                                 <input placeholder="First Number" name="first" type="text"
                                             className="validate" value={first} onChange={e => onChange(e)} />
                                     <label className="active" htmlFor="first">Enter any number</label>
@@ -56,7 +60,7 @@ const Main = () => {
                             ) :
                             (
                                 // Second Field
-                                <div className="input-field col s6">
+                                <div className="input-field col s12">
                                     <input placeholder="Second Number" name="second" type="text" maxLength={first.length}
                                             className="validate" value={second} onChange={e => onChange(e)} />
                                     <label className="active" htmlFor="second">Now enter the same number in reverse</label>
