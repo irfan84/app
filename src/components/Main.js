@@ -6,29 +6,25 @@ const Main = () => {
     // Initial State
     const [data, setData] = useState({
         first: '',
-        second: '',
-        result: '?'
+        second: ''
     });
 
+    // Hook to store result
+    const [result, setResult] = useState('?');
+
     // Destructuring
-    const { first, second, result } = data;
+    const { first, second } = data;
 
     // UseEffect Hook
     useEffect(() => {
         if(second.length === first.length && second !== '') {
             if (second === first) {
-                setData({
-                    ...data,
-                    result: 'Correct!'
-                });
+                setResult('Correct!');
             } else {
-                setData({
-                    ...data,
-                    result: 'Incorrect, try again'
-                })
+                setResult('Incorrect, try again')
             }
         }// eslint-disable-next-line
-    }, [first, result, second]);
+    }, [first, second, result]);
 
     // Hook to toggle between fields
     const [field, toggleField] = useState(true);
