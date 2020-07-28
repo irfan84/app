@@ -15,18 +15,19 @@ const Main = () => {
 
     // UseEffect Hook
     useEffect(() => {
-        if(second.length === first.length){
-            // Converted to array, reversed and joined back to string
-            const reversed = second.split('').reverse().join('');
-            if(reversed === first) {
-                setData({...data,
-                    result: 'Correct!'});
+        if(second.length === first.length && second !== '') {
+            if (second === first) {
+                setData({
+                    ...data,
+                    result: 'Correct!'
+                });
+            } else {
+                setData({
+                    ...data,
+                    result: 'Incorrect, try again'
+                })
             }
-        }
-        else{
-            setData({...data,
-                result: 'Incorrect, try again'})
-        } // eslint-disable-next-line
+        }// eslint-disable-next-line
     }, [first, result, second]);
 
     // Hook to toggle between fields
@@ -42,9 +43,10 @@ const Main = () => {
         if(first === ''){
             return M.toast({html: 'Please enter first number', classes: 'rounded'});
         }
+        // Reverse First Number
+        setData({...data, first: first.split('').reverse().join('')});
         toggleField(!field);
     };
-
 
     return (
         <div className="row">
@@ -64,7 +66,7 @@ const Main = () => {
                                     <input placeholder="Second Number" name="second" type="text" maxLength={first.length}
                                             className="validate" value={second} onChange={e => onChange(e)} />
                                     <label className="active" htmlFor="second">Now enter the same number in reverse</label>
-                                    <h5>Result: {second.length !== first.length ? ('?') : (result)}</h5>
+                                    <h5>Result: {result}</h5>
                                     <button className="waves-effect waves-light btn" onClick={onClick}>Go Back</button>
                                 </div>
                             )
