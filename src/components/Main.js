@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import M from 'materialize-css/dist/js/materialize.min';
 
-const Main = () => {
+const Main = ({M}) => {
 
     // Initial State
     const [data, setData] = useState({
